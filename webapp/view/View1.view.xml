@@ -1,0 +1,106 @@
+<mvc:View controllerName="day2.day2_training_1.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Label text="Capgemini" class="cap"/>
+					<Label text="India" id="label"/>
+					<Image src="model/cap.jpg" densityAware="false" >
+					<!--	<layoutData>
+							<FlexItemData growFactor="1"/>
+						</layoutData>-->
+					</Image>
+					<Button text="{Northwind>/results/2/ProductName}"/>
+					<Input id="input" width="20%" showValueHelp="true" valueHelpRequest="onShowPress"/>
+					<List items="{Products>/ProductCollection}" headerText="Products">
+						<items>
+							<ObjectListItem title="{Products>Name}" type="Active" press="onListPress">
+								<firstStatus>
+									<ObjectStatus text="{Products>Status}" state="{= ${Products>Status} >10 ? 'Error' : 'Success'}"/>
+								</firstStatus>
+								<attributes>
+									<ObjectAttribute text="{Products>UnitPrice}"/>
+									<ObjectAttribute text="{path: 'Products>Date', formatter: '.formatter.displayDate'}"/>
+								</attributes>
+							</ObjectListItem>
+						</items>
+					</List>
+					<List items="{Northwind>/results}" headerText="Products">
+						<items>
+							<ObjectListItem title="{Northwind>ProductName}" type="Active" press="onListPress">
+								<firstStatus>
+									<ObjectStatus text="{Northwind>UnitsOnOrder}" state="{= ${Northwind>UnitsOnOrder} >10 ? 'Error' : 'Success'}"/>
+								</firstStatus>
+								<attributes>
+									<ObjectAttribute text="{ path:'Northwind>UnitPrice' , formatter: '.formatter.decimal'}"/>
+									<ObjectAttribute text="{Northwind>UnitsOnOrder}"/>
+								</attributes>
+							</ObjectListItem>
+						</items>
+					</List>
+					<f:SimpleForm id="SimpleFormChange354" editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanXL="3" labelSpanL="3"
+						labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+						columnsL="1" columnsM="1" singleContainerFullSize="false">
+						<f:content>
+							<Label text="Name"/>
+							<Input id="name" value="{Northwind>ProductName}"/>
+							<Label text="Street/No."/>
+							<Input value="{Northwind>UnitPrice}"></Input>
+							<Label text="ZIP Code/City"/>
+							<Input value="{Northwind>nitsOnOrder}">
+								<layoutData>
+									<l:GridData span="XL1 L2 M2 S4"/>
+								</layoutData>
+							</Input>
+							<Label text="Country"/>
+							<Select id="country" selectedKey="{Country}">
+								<items>
+									<core:Item text="England" key="England"/>
+									<core:Item text="Germany" key="Germany"/>
+									<core:Item text="USA" key="USA"/>
+								</items>
+							</Select>
+						</f:content>
+					</f:SimpleForm>
+					<Table id="idProductsTable" mode="SingleSelectMaster" selectionChange="onSelectionChange" items="{Supplier>/Rowset/0/Row}"
+						class="TableStyle">
+						<headerToolbar>
+							<Toolbar>
+								<ToolbarSpacer/>
+								<Button text="Insert Item" type="Emphasized" press="onInsert"/>
+								<Button text="Edit Item" type="Emphasized" press="onEdit"/>
+								<Button text="Save Item" type="Emphasized" press="onSave"/>
+								<Button text="Delete Item" type="Reject" press="onDelete"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Label text="ID"/>
+							</Column>
+							<Column>
+								<Label text="Product"/>
+							</Column>
+							<Column>
+								<Label text="Category"/>
+							</Column>
+							<Column>
+								<Label text="WeightMeasure"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Input value="{Supplier>ProductId}" editable="false" class="InputStyle"/>
+									<Input value="{Supplier>Name}" editable="false" class="InputStyle"/>
+									<Input value="{Supplier>Category}" editable="false" class="InputStyle"/>
+									<Input value="{Supplier>WeightMeasure}" editable="false" class="InputStyle"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
